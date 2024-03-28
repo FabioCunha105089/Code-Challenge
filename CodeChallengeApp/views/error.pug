@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= status
+  h1
+    pre #{error.status}
+  pre #{error.stack}
+  each err in error
+    pre= err.msg
+  
+  .footer.w3-container.w3-blue
+    h5 
+      span Fábio Cunha - #{date} - [
+      a(href="/") Return
+      span ]

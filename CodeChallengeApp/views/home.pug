@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Users list
+        a.w3-btn.w3-round.w3-grey(href="/users/create") Create
+
+    .w3-container
+      table.w3-table-all
+        tr
+          th Name
+          th Language
+          th Actions
+
+        each user in usersL
+          tr
+            td
+              a(href="/users/" + user.id)= user.name
+            td= user.language
+            td
+              span [
+              a(href="/users/edit/" + user.id) Edit
+              span ]
+              span [
+              a(href="#" onclick=`deleteUser('${user.id}')`) Delete
+              span ]
+      
+  .footer.w3-container.w3-blue
+    h5 Fábio Cunha - #{date}
+    
+  script(src="/javascripts/users.js")
