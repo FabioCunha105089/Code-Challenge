@@ -16,7 +16,7 @@ sudo n latest
 ```
 
 ### Step 4: Open a new shell
-	Node.js update won't take effect in the current shell
+Node.js update won't take effect in the current shell
 
 ### Step 5: Navigate to the app folder
 ```
@@ -34,7 +34,7 @@ npm start
 ```
 
 ### Step 8: Server is running
-	Interact with the server at http://localhost:3000
+Interact with the server at http://localhost:3000
 ---
 # Instructions to run the unit tests:
 
