@@ -35,6 +35,7 @@ npm start
 
 ### Step 8: Server is running
 Interact with the server at http://localhost:3000
+
 ---
 # Instructions to run the unit tests:
 
