@@ -16,7 +16,7 @@ const userValidationRules = [
   body('name')
     .trim()
     .isLength({ min: 3 }).withMessage('Name must be at least 3 characters long')
-    .isAlphanumeric().withMessage('Name must be alphanumeric'),
+    .matches(/^[a-zA-Z0-9\s]+$/).withMessage('Name must be alphanumeric (spaces allowed)'),
   body('id')
     .trim()
     .isLength(16).withMessage('Id must be exactly 16 characters long')
@@ -124,7 +124,7 @@ router.delete('/delete/:userId', async function (req, res, next) {
     if (index !== -1) {
       users.splice(index, 1)
       await fs.writeFile(datasetPath, JSON.stringify(users, null, 2))
-      res.status(200).send('User deleted successfully')
+      res.status(204).send('User deleted successfully')
     } else {
       const err = createError(404, 'User not found')
       res.status(404).render("error", { error: err, date: d })

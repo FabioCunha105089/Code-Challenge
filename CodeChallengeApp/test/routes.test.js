@@ -21,16 +21,16 @@ describe('App Routes', () => {
         chai.expect(res.status).to.equal(200)
     })
 
-    it('GET /create should return 201 and an user creation form', async () => {
+    it('GET /users/create should return 200 and an user creation form', async () => {
         const res = await request(app).get('/users/create')
-        chai.expect(res.status).to.equal(201)
+        chai.expect(res.status).to.equal(200)
     })
 
-    it('POST /create should return 302 and create a new user', async () => {
+    it('POST /users/create should return 302 and create a new user', async () => {
         const user = {
-            name: 'Fabio Cunha',
-            id: 'ADGFDEW323223DFA',
+            name: 'FabioCunha',
             language: 'Portuguese',
+            id: 'ADGFDEW323223DFA',
             bio: 'Test',
             version: 1.0
         }
@@ -40,7 +40,7 @@ describe('App Routes', () => {
         chai.expect(user).to.deep.equal(newUser)
     })
 
-    it('POST /create should return 400 and error page', async () => {
+    it('POST /users/create should return 400 and error page', async () => {
         const user = {
             name: 'a',
             id: '123',
@@ -52,33 +52,33 @@ describe('App Routes', () => {
         chai.expect(res.status).to.equal(400)
     })
 
-    it('GET /edit/:userId should return 202 and user edit form if user exists', async () => {
+    it('GET /users/edit/:userId should return 200 and user edit form if user exists', async () => {
         const userId = 'ADGFDEW323223DFA'
         const res = await request(app).get(`/users/edit/${userId}`)
-        chai.expect(res.status).to.equal(202)
+        chai.expect(res.status).to.equal(200)
       })
 
-    it('GET /edit/:userId should return 404 and error page if user does not exist', async () => {
+    it('GET /users/edit/:userId should return 404 and error page if user does not exist', async () => {
         const userId = '1111111111111111'
         const res = await request(app).get(`/users/edit/${userId}`)
         chai.expect(res.status).to.equal(404)
     })
 
-    it('PUT /edit/:userId should return 203 and update user info', async () => {
+    it('PUT /users/edit/:userId should return 200 and update user info', async () => {
         const newUserData = {
-            name: 'Juan Fabio Cunha',
+            name: 'Antonio Fabio Cunha',
             id: 'ADGFDEW323223DFA',
             language: 'Spanish',
             bio: 'Updated Bio Test',
             version: 2.0
         }
         const res = await request(app).put(`/users/edit/${newUserData.id}`).send(newUserData)
-        chai.expect(res.status).to.equal(203)
+        chai.expect(res.status).to.equal(201)
         const updatedUser = await readUserData(newUserData.id)
         chai.expect(updatedUser).to.deep.equal(newUserData)
     })
 
-    it('PUT /edit/:userId should return 400 and error page', async () => {
+    it('PUT /users/edit/:userId should return 400 and error page', async () => {
         const newUserData = {
             name: 'a',
             id: 'ADGFDEW323223DFA',
@@ -90,7 +90,7 @@ describe('App Routes', () => {
         chai.expect(res.status).to.equal(400)
     })
 
-    it('DELETE /delete/:userId should return 204 and delete the user if user exists', async () => {
+    it('DELETE /users/delete/:userId should return 204 and delete the user if user exists', async () => {
         const userId = 'ADGFDEW323223DFA'
         const res = await request(app).delete(`/users/delete/${userId}`)
         chai.expect(res.status).to.equal(204)
@@ -98,19 +98,19 @@ describe('App Routes', () => {
         chai.expect(ver.status).to.equal(404)
     })
 
-    it('DELETE /delete/:userId should return 404 and error page', async () => {
+    it('DELETE /users/delete/:userId should return 404 and error page', async () => {
         const userId = '1111111111111111'
         const res = await request(app).delete(`/users/delete/${userId}`)
         chai.expect(res.status).to.equal(404)
     })
 
-    it('GET /:userId should return 205 and user details if user exists', async () => {
+    it('GET /users/:userId should return 200 and user details if user exists', async () => {
         const userId = '6VTI8X6LL0MMPJCC'
         const res = await request(app).get(`/users/${userId}`)
-        chai.expect(res.status).to.equal(205)
+        chai.expect(res.status).to.equal(200)
     })
 
-    it('GET /:userId should return 404 and error page if user does not exist', async () => {
+    it('GET /users/:userId should return 404 and error page if user does not exist', async () => {
         const userId = '1111111111111111'
         const res = await request(app).get(`/users/${userId}`)
         chai.expect(res.status).to.equal(404)

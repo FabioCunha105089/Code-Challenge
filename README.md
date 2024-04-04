@@ -45,4 +45,6 @@ cd path/to/CodeChallengeApp
 ```
 
 ### Step 2: Run the unit tests
-	$ npm test
+```
+npm test
+```
